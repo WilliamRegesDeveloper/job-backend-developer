@@ -45,7 +45,7 @@ JDBC_DATABASE_USERNAME: qnpcwvhgddhyjl
 
 ## Integração Heroku com GitHub
 Integração entre Heroku e GitHub;
-Textando builder e deploy com Heroku;
+Testando builder e deploy com Heroku;
 
 
 
