@@ -1,3 +1,5 @@
 {
+	"name": "intelipost-api",
+	"description": "Api para acessos de usuarios e logins.",
 	"image": "heroku/java"
 }
