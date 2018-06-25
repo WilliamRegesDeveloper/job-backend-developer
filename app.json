@@ -1,0 +1,12 @@
+{
+	"name": "API Intelipost",
+	"description": "Api para acessos de usuarios e logins.",
+	"buildpacks": [
+		{
+			"url": "https://github.com/heroku/heroku-buildpack-java.git"
+		},
+		{
+			"url": "heroku/java"
+		}
+	]
+}
