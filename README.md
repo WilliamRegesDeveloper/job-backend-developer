@@ -26,27 +26,21 @@ Database has been created and is available
  ! data from another database with pg:copy
 Created postgresql-deep-75860 as DATABASE_URL
 
-heroku config:get DATABASE_URL
-postgres://qnpcwvhgddhyjl:7f2851e281ad75d6bd466097ca6e75350bdee4b4272cdae8c3a3c3a675a7cbf2@ec2-54-163-229-212.compute-1.amazonaws.com:5432/da5588jp7439dm
 
-
-heroku config:set JDBC_DATABASE_URL=jdbc:postgre://ec2-54-163-229-212.compute-1.amazonaws.com:5432/da5588jp7439dm
-heroku config:set JDBC_DATABASE_USERNAME=qnpcwvhgddhyjl 
-heroku config:set JDBC_DATA BASE_PASSWORD=7f2851e281ad75d6bd466097ca6e75350bdee4b4272cdae8c3a3c3a675a7cbf2
 
 
 heroku config
 === intelipost-api Config Vars
-DATABASE_URL:           postgres://qnpcwvhgddhyjl:7f2851e281ad75d6bd466097ca6e75350bdee4b4272cdae8c3a3c3a675a7cbf2@ec2-54-163-229-212.compute-1.amazonaws.com:5432/da5588jp7439dm
-JDBC_DATABASE_PASSWORD: 7f2851e281ad75d6bd466097ca6e75350bdee4b4272cdae8c3a3c3a675a7cbf2
-JDBC_DATABASE_URL:      jdbc:postgresql://ec2-54-163-229-212.compute-1.amazonaws.com:5432/da5588jp7439dm
-JDBC_DATABASE_USERNAME: qnpcwvhgddhyjl
+DATABASE_URL: postgres://qguahpxbleqzgb:1600c44ad4919258372ecdbb0700015d5d28f723754e7af262ffa925cd73a5b7@ec2-54-235-253-198.compute-1.amazonaws.com:5432/d452861qqmakjh
+JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-235-253-198.compute-1.amazonaws.com:5432/d452861qqmakjh
+JDBC_DATABASE_USERNAME=qguahpxbleqzgb
+JDBC_DATABASE_PASSWORD=1600c44ad4919258372ecdbb0700015d5d28f723754e7af262ffa925cd73a5b7
 
 
 ## Integração Heroku com GitHub
 Integração entre Heroku e GitHub;
 Testando builder e deploy com Heroku;
-
+Tentativas de fazer deploy no Heroku
 
 
 
