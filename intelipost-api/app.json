@@ -1,5 +1,5 @@
 {
-	"name": "intelipost-api",
+	"name": "API Intelipost",
 	"description": "Api para acessos de usuarios e logins.",
 	"buildpacks": [
 		{
