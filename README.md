@@ -15,14 +15,15 @@ sejam distribuídas para mais conteineres de servidores com a mesma aplicaçãoo de
 
  Para essa api precisa criar um ambiente local utilizando os seguintes recursos:
 
-  -Ferramenta STS Spring com os recursos do Spring-boot e Java 8; 
+  * Ferramenta STS Spring com os recursos do Spring-boot e Java 8; 
    
-   Dependencias com Maven:
-  -spring-boot na versão 2.0.3.RELEASE;
-  -spring-security, spring-data-jpa, tomcat, thymeleaf;
-  -[Flywaydb](https://flywaydb.org/) para gerenciamento e migração de banco no postgre ;
+  * Dependencias com Maven: -spring-boot na versão 2.0.3.RELEASE;
 
-   -container docker do banco de dados postgre versão 9.6.1 local em desenvolvimento; 
+  * spring-security, spring-data-jpa, tomcat, thymeleaf;
+
+  * [Flywaydb](https://flywaydb.org/) para gerenciamento e migração de banco no postgre;
+
+  * container docker do banco de dados postgre versão 9.6.1 local em desenvolvimento; 
   
   Exemplo:
   docker run --name postgresql -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -e POSTGRES_DB=sample -d postgres:9.6.1
@@ -31,22 +32,34 @@ sejam distribuídas para mais conteineres de servidores com a mesma aplicaçãoo de
 
 ## Passos do desenvolvimento
 
- Criação do projeto inicial com suas dependencias em maven;
- Criação das classes modelo(Usuario);
- Criação das classes Reposotory(Usuario);
- Criação das classes de controller(Usuario); 
- Criação da query que busca o usuário por email;
- Configuração de segurança de acesso em Bacic;
- Criação do serviço de UserDetail para autenticar login;
- Configuração de permissão de acesso dos endpoints;
- Configuração de filtro para habilitar Cors requisitados pelos browsers;
- Testes spring com api httpcomponents para autenticação de login;
- Teste de requisições com a ferramenta Postman.
- Documentação no Readme;
- Documentação de integraçao pelo [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV);
+* Criação do projeto inicial com suas dependencias em maven;
+
+* Criação das classes modelo(Usuario);
+
+* Criação das classes Reposotory(Usuario);
+
+* Criação das classes de controller(Usuario); 
+
+* Criação da query que busca o usuário por email;
+
+* Configuração de segurança de acesso em Bacic;
+
+* Criação do serviço de UserDetail para autenticar login;
+
+* Configuração de permissão de acesso dos endpoints;
+
+* Configuração de filtro para habilitar Cors requisitados pelos browsers;
+
+* Testes spring com api httpcomponents para autenticação de login;
+
+* Teste de requisições com a ferramenta Postman.
+
+* Documentação no Readme;
+
+* Manual de integraçao pelo [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV) para equipe front-end;
 
 
-## Criando configuações no heroku 
+## Configurações no Heroku 
 [Heroku](https://www.heroku.com/) é um servidor na núvem que hospeda aplicações e apis de serviços podendo configurar sua apicação para utilizar recursos como banco de dados em núvem e permitir acessos simultaneos escalando-os tanto verticalmente quanto horizontalmente conforme o plano adquirido.
 Ela já trabalha de maneira integrada com o GitHub para fazer pull do código fonte, build e deploy 
 assim quando detectado alteração numa branch master. 
@@ -54,82 +67,81 @@ assim quando detectado alteração numa branch master.
 O Heroku disponibiliza configuração de núvem tanto pela plataforma web ou baixando o [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli) para configurar o ambiente via linha de comando.
 
 
-1. PELO TERMINAL
+### Pelo Terminal
 Dentro do projeto intelipost-api digite:
 
-a. Faça o login na sua conta Heroku e siga as instruções para criar uma nova chave pública SSH.
-$heroku login
+1) Faça o login na sua conta Heroku e siga as instruções para criar uma nova chave pública SSH.
 
-b. Faça algumas alterações no código dentro do projeto e implemente-as no Heroku usando o Git.
-$ git add .
-$ git commit -am "primeiro commit"
-$ git push heroku master
+ - $heroku login
+
+2) Faça algumas alterações no código dentro do projeto e implemente-as no Heroku usando o Git.
+
+- $ git add .
+- $ git commit -am "primeiro commit"
+- $ git push heroku master
 
 Pronto, já está deployado no Heroku.
 Porém, o heroku possui um recurso que será utilizado integrando o github sem precisar fazer esses passos acima apenas dando push no para o github brach master.
 
 
-2. CRIANDO POSTGREE
+### Configurando banco Postgre
 Para criar banco de dados na núvem foi necessiario digitar as seguintes instruções dentro do projeto intelipost-api
 
-a. Criando o banco postgre free:
-heroku addons:create heroku-postgresql:hobby-dev
+1. Criando o banco postgre free:
+* heroku addons:create heroku-postgresql:hobby-dev
 
-b. Buscando variavel de ambiente do banco criado:
-heroku config:get 
+2. Buscando variavel de ambiente do banco criado:
+* heroku config:get 
 DATABASE_URL: postgres://eshaufvsjtavac:f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef@ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
 
-c. Criando variaveis de ambiente pela decomposição da variável DATABASE_URL:
-heroku config:set JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
-heroku config:set JDBC_DATABASE_USERNAME=eshaufvsjtavac
-heroku config:set JDBC_DATABASE_PASSWORD=f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef
+3. Criando variaveis de ambiente pela decomposição da variável DATABASE_URL:
+* heroku config:set JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
+* heroku config:set JDBC_DATABASE_USERNAME=eshaufvsjtavac
+* heroku config:set JDBC_DATABASE_PASSWORD=f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef
 
 Pronto, já está criado as variaveis de ambiente para a api na núvem
 
-3. Criando arquivo application-prod.properties
+## Criando arquivo application-prod.properties
  Esse arquivo deve ser criado dentro da pasta src/main/resource. Ele é necessário quando o projeto for dado push para produção onde as variáveis de ambiente acima irão conectar o projeto ao banco postgres em produção na núvem.
 
-Exemplo:
-spring.datasource.url={JDBC_DATABASE_URL}
-spring.datasource.username={JDBC_DATABASE_USERNAME}
-spring.datasource.password={JDBC_DATABASE_PASSWORD}
+1. Exemplo:
 
-spring.datasource.driver-class-name=org.postgresql.Driver
+* spring.datasource.url={JDBC_DATABASE_URL}
+* spring.datasource.username={JDBC_DATABASE_USERNAME}
+* spring.datasource.password={JDBC_DATABASE_PASSWORD}
+* spring.datasource.driver-class-name=org.postgresql.Driver
 
 
-4. Criando o arquivo Procfile
+## Criando o arquivo Procfile
 Esse arquivo é exigida pelo Heroku para configurar a api para funcionar em seu ambiente interno, configurando assim porta do servidor, arquivos de produção e local do jar compilado para ser rodado. Ele deve ser criado dentro do projeto intelipost-api
 
-Exemplo
-web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/intelipost*.jar
+1. Exemplo
+* web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/intelipost*.jar
 
 
-Após essas configurações rode:
-$ git add .
-$ git commit -am "configuracao de ambiente"
-$ git push heroku master
+2. Após essas configurações rode:
+- $ git add .
+- $ git commit -am "configuracao de ambiente"
+- $ git push heroku master
 
-5. LINKS
-LINK DO ENDEREÇO DA API INTELIPOST-API 
-heroku create intelipost-api:
-https://intelipost-api.herokuapp.com/
+## LINKS
+1. LINK DO ENDEREÇO DA API INTELIPOST-API 
+* https://intelipost-api.herokuapp.com/
 
-CRIANDO POSTGREE
-heroku-postgresql:hobby-dev:
-banco de dados limitado para teste 
-configuração de arquivo application-prod.properties no projeto para linkar ao banco de produção;
-
-
-PLUGANDO HEROKU AO GITHUB para builder deploy
-GitHub: https://github.com/WilliamRegesDeveloper/job-backend-developer.git
-GitHeroku: https://git.heroku.com/intelipost-api.git
+2. PLUGANDO HEROKU AO GITHUB para builder deploy
+* GitHub em repositorio: https://github.com/WilliamRegesDeveloper/job-backend-developer.git
+* GitHeroku em produção: https://git.heroku.com/intelipost-api.git
 
 
 ## Como foi resolver seu teste
- Esse teste foi bom para aumento de conhecimento sobre o que a empresa exige de nós desenvolvedores. Para mim é um desafio poder trabalhar com apis em núvem e poder amadurecer mais nesse profissão. Não trabalhei ainda totalmente em nuvem como google cloud ou AWS. Sempre trabalhei de maneira hibrida tanto com sistemas erp em infra- estrutura onprimece e apis rest em núvem para integrar erp a alguma plataforma web. 
- Sobre trabalhar com aplicação em loadbalance é um assunto novo que estou me aprofundando em conhecer e melhorar meu conhecimento. 
- Sobre criar layous no spring-boot, apenas trabalhei comm integração de apis rest. Layouts já criei em outros sistemas porém em JSF. 
- Sobre trabalhar em banco de dados, já trabalhei com outros bancos com sqlserver, mysql e firebird com queries e store procedure. Postgres é novo para mim. Mas não percebi muita diferença já que consegui crialo na núvem e também dockeriza-lo em ambiente de desenvolvimento local. 
+ Esse teste foi bom para aumento de conhecimento sobre o que a empresa exige de nós desenvolvedores. Para mim é um desafio poder trabalhar com apis em núvem e poder amadurecer mais nesse profissão. Não trabalhei ainda totalmente em nuvem como google cloud ou AWS. Sempre trabalhei de maneira hibrida tanto com sistemas erp em infra- estrutura onprimeces com servidores de aplicação Tomcat, Widfly, Glassfish e apis rest em núvem para integrar erp a alguma plataforma web tanto com Heroku e Apache Tomcat.
+
+ Sobre trabalhar com aplicação em loadbalance é um assunto novo que estou me aprofundando em conhecer e melhorar meu conhecimento.
+
+ Sobre criar layous no spring-boot, apenas trabalhei comm integração de apis rest. Layouts já criei em outros sistemas porém em JSF.
+
+ Sobre trabalhar em banco de dados, já trabalhei com outros bancos com sqlserver, mysql e firebird criando tabelas relacionais, desenvolvendo queries, store procedure e view. Postgres é novo para mim. Mas não percebi muita diferença já que consegui crialo na núvem e também dockeriza-lo em ambiente de desenvolvimento local. 
+
  Gosto do que faço e aprendo a cada dia mais algo novo. Assim melhoro meu conteúdo e conhecimento sobre o que o mercado pode utilizar como tecnologia e inovação.
 
 
