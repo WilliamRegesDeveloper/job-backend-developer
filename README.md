@@ -88,19 +88,19 @@ Porém, o heroku possui um recurso que será utilizado integrando o github sem pre
 Para criar banco de dados na núvem foi necessiario digitar as seguintes instruções dentro do projeto intelipost-api
 
 1. Criando o banco postgre free:
-* heroku addons:create heroku-postgresql:hobby-dev
+- $ heroku addons:create heroku-postgresql:hobby-dev
 
 2. Buscando variavel de ambiente do banco criado:
-* heroku config:get 
+- $ heroku config:get 
 
-DATABASE_URL: postgres://eshaufvsjtavac:f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef@ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
+	DATABASE_URL: postgres://eshaufvsjtavac:f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef@ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
 
 3. Criando variaveis de ambiente pela decomposição da variável DATABASE_URL
 A variável DATABASE_URL é dividido em tres partes. Essas tres partes devem der criadas separadas conforme exemplo abaixo.
 
-* heroku config:set JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
-* heroku config:set JDBC_DATABASE_USERNAME=eshaufvsjtavac
-* heroku config:set JDBC_DATABASE_PASSWORD=f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef
+- $ heroku config:set JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
+- $ heroku config:set JDBC_DATABASE_USERNAME=eshaufvsjtavac
+- $ heroku config:set JDBC_DATABASE_PASSWORD=f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef
 
 Pronto, já está criado as variaveis de ambiente para a api na núvem
 
@@ -144,7 +144,9 @@ O procedimento de builder está por conta do serviço Heroku que ao ser notificado
 
 
 ## Como foi resolver seu teste
- Esse teste foi bom para aumento de conhecimento sobre o que a empresa exige de nós desenvolvedores. Para mim é um desafio poder trabalhar com apis em núvem e poder amadurecer mais nesse profissão. Não trabalhei ainda totalmente em nuvem como google cloud ou AWS. Sempre trabalhei de maneira hibrida tanto com sistemas erp em infra- estrutura onprimeces com servidores de aplicação Tomcat, Widfly, Glassfish e apis rest em núvem para integrar erp a alguma plataforma web tanto com Heroku e Apache Tomcat.
+ Esse teste foi bom para aumento de conhecimento sobre o que a empresa exige de nós desenvolvedores. Para mim é um desafio poder trabalhar com apis em núvem e poder amadurecer mais meus conhecimentos. Não trabalhei ainda totalmente em nuvem como google cloud ou AWS. Os clientes em que trabalhei sempre trabalham de maneira hibrida tanto com sistemas erp em infra-estrutura onprimeces com algumas coisas em núvem. Tenho convivencia com servidores de aplicação Tomcat, Widfly, Glassfish e apis rest tanto em Apache Tomcat quanto rodando no próprio heroku. 
+
+ Sobre CI/CD já implantei Jenkins integrado com GitLab para entrega contínua em servidor onpremice onde a ferramenta faz builder e deploy no Apache Tomcat. Porém, para esse teste deixei por conta do próprio heroku essa função de entrega contínua.
 
  Sobre trabalhar com aplicação em loadbalance é um assunto novo que estou me aprofundando em conhecer e melhorar meu conhecimento.
 
