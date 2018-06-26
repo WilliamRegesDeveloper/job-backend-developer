@@ -92,9 +92,12 @@ Para criar banco de dados na núvem foi necessiario digitar as seguintes instruçõ
 
 2. Buscando variavel de ambiente do banco criado:
 * heroku config:get 
+
 DATABASE_URL: postgres://eshaufvsjtavac:f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef@ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
 
-3. Criando variaveis de ambiente pela decomposição da variável DATABASE_URL:
+3. Criando variaveis de ambiente pela decomposição da variável DATABASE_URL
+A variável DATABASE_URL é dividido em tres partes. Essas tres partes devem der criadas separadas conforme exemplo abaixo.
+
 * heroku config:set JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
 * heroku config:set JDBC_DATABASE_USERNAME=eshaufvsjtavac
 * heroku config:set JDBC_DATABASE_PASSWORD=f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef
@@ -124,13 +127,20 @@ Esse arquivo é exigida pelo Heroku para configurar a api para funcionar em seu a
 - $ git commit -am "configuracao de ambiente"
 - $ git push heroku master
 
+## Builder e Deploy
+O procedimento de builder está por conta do serviço Heroku que ao ser notificado pelo github que uma branch master obteve uma nova alteração faz pull do projeto direto no repositorio, testa as dependencias e faz deploy do projeto já disponibilizando acesso. 
+
+
 ## LINKS
-1. LINK DO ENDEREÇO DA API INTELIPOST-API 
+1. Endereço da API INTELIPOST-API 
 * https://intelipost-api.herokuapp.com/
 
-2. PLUGANDO HEROKU AO GITHUB para builder deploy
+2. Repositorio GitHub e Heroku
 * GitHub em repositorio: https://github.com/WilliamRegesDeveloper/job-backend-developer.git
 * GitHeroku em produção: https://git.heroku.com/intelipost-api.git
+
+3. Manual de Integração
+* Manual de integração front-end a api [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV);
 
 
 ## Como foi resolver seu teste
