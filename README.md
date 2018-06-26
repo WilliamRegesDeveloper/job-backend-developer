@@ -2,14 +2,17 @@
 
 ## Analise do primerio desafio
 
-1) Imagine que hoje tenhamos um sistema de login e perfis de usuÃ¡rios. O sistema conta com mais de 10 milhÃµes de usuÃ¡rios, sendo que temos um acesso concorrente de cerca de 5 mil usuÃ¡rios. Hoje a tela inicial do sistema se encontra muito lenta. Nessa tela Ã© feita uma consulta no banco de dados para pegar as informaÃ§Ãµes do usuÃ¡rio e exibi-las de forma personalizada. Quando hÃ¡ um pico de logins simultÃ¢neos, o carregamento desta tela fica demasiadamente lento. Na sua visÃ£o, como poderÃ­amos iniciar a busca pelo problema, e que tipo de melhoria poderia ser feita?
+1) Imagine que hoje tenhamos um sistema de login e perfis de usuÃ¡rios. O sistema conta com mais de 10 milhÃµes de usuÃ¡rios, sendo que temos um acesso concorrente de cerca de 5 mil usuÃ¡rios. Hoje a tela inicial do sistema se encontra muito lenta. Nessa tela será feita uma consulta no banco de dados para pegar as informaçõeses do usuário e exibi-las de forma personalizada. Quando hÃ¡ um pico de logins simultaneos, o carregamento desta tela fica demasiadamente lento. Na sua visão, como poderíamos iniciar a busca pelo problema, e que tipo de melhoria poderia ser feita?
 
-Reposta: Pode se pensar em escalar uma aplicaÃ§Ã£o de login em cloud conteinizando-o e configurando-o para trabalhar com balanceamento de carga (loadbalance) como o NGinx ou outro balanceador em nÃºvem. Um balanceador permite que muitas requisiÃ§Ãµes 
-sejam distribuÃ­das para mais conteineres de servidores com a mesma aplicaÃ§Ã£o de login. Sendo assim caso necessÃ¡rio atender a milhares de requisiÃ§Ãµes ao mesmo tempo um balanceador poderÃ¡ instanciar novos conteineres com a mesma aplicaÃ§Ã£o de login e distribuindo a carga de requisiÃ§Ã£o entre esses novos conteineres.
+Reposta: Pode se pensar em escalar uma aplicação de login em cloud conteinizando-o e configurando-o para trabalhar com balanceamento de carga (loadbalance) como o NGinx ou outro balanceador em núvem. Um balanceador permite que muitas requisições 
+sejam distribuídas para mais conteineres de servidores com a mesma aplicaçãoo de login. Sendo assim caso necessário atender a milhares de requisições ao mesmo tempo um balanceador poderão instanciar novos conteineres com a mesma aplicação de login e distribuindo a carga de requisição entre esses novos conteineres escalando de forma horizontal. 
 
 
 ## Modo de criação da API
- A idéia inicial é criar uma api que será desenvolvida com o sts do spring, versionado no github feito deploy no servidor Heroku para acesso de todos.
+ A idéia inicial do projeto é criar uma api que disponibiliza validar acesso de usuário a api inserindo login tanto por layout quanto por requisição nos metodos http com resposta e Json.
+ Esse projeto será desenvolvido local com STS Spring, vesionado pelo git, armazenado no repositorio github e build/deploy no 
+ [Heroku](https://www.heroku.com/) como servidor em núvem com alguns acessos limitados apenas para experimento.
+
  Para essa api precisa criar um ambiente local utilizando os seguintes recursos:
 
   -Ferramenta STS Spring com os recursos do Spring-boot e Java 8; 
@@ -19,7 +22,7 @@ sejam distribuÃ­das para mais conteineres de servidores com a mesma aplicaÃ§Ã£o 
   -spring-security, spring-data-jpa, tomcat, thymeleaf;
   -[Flywaydb](https://flywaydb.org/) para gerenciamento e migração de banco no postgre ;
 
-   -container docker do banco de dados postgre versão 9.6.1 local; 
+   -container docker do banco de dados postgre versão 9.6.1 local em desenvolvimento; 
   
   Exemplo:
   docker run --name postgresql -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -e POSTGRES_DB=sample -d postgres:9.6.1
@@ -28,33 +31,92 @@ sejam distribuÃ­das para mais conteineres de servidores com a mesma aplicaÃ§Ã£o 
 
 ## Passos do desenvolvimento
 
-Criação do projeto inicial com suas dependencias em maven;
-Criação das classes modelo(Usuario);
-Criação das classes Reposotory(Usuario);
-Criação das classes de controller(Usuario); 
-Criação da query que busca o usuário por email;
-Configuração de segurança de acesso em Bacic;
-Criação do serviço de UserDetail para autenticar login;
-Configuração de permissão de acesso dos endpoints;
-Configuração de filtro para habilitar Cors requisitados pelos browsers;
-Testes spring com api httpcomponents para autenticação de login;
-Teste de requisições com a ferramenta Postman.
-Documentação no Readme;
-Documentação de integraçao no [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV);
+ Criação do projeto inicial com suas dependencias em maven;
+ Criação das classes modelo(Usuario);
+ Criação das classes Reposotory(Usuario);
+ Criação das classes de controller(Usuario); 
+ Criação da query que busca o usuário por email;
+ Configuração de segurança de acesso em Bacic;
+ Criação do serviço de UserDetail para autenticar login;
+ Configuração de permissão de acesso dos endpoints;
+ Configuração de filtro para habilitar Cors requisitados pelos browsers;
+ Testes spring com api httpcomponents para autenticação de login;
+ Teste de requisições com a ferramenta Postman.
+ Documentação no Readme;
+ Documentação de integraçao pelo [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV);
 
 
-## Criando configuações no heroku para builder e deploy
-Heroku é um servidor na núvem que hospeda apis de dependendo do plano de uso pode ser gratuito.
-Ela já trabalha de maneira integrada com o GitHub para fazer pull do código, buildar e fazer deploy 
-assim quando detectado alteração numa branch master. Funciona parecido com o Jenkins, porém em núvem.
+## Criando configuações no heroku 
+[Heroku](https://www.heroku.com/) é um servidor na núvem que hospeda aplicações e apis de serviços podendo configurar sua apicação para utilizar recursos como banco de dados em núvem e permitir acessos simultaneos escalando-os tanto verticalmente quanto horizontalmente conforme o plano adquirido.
+Ela já trabalha de maneira integrada com o GitHub para fazer pull do código fonte, build e deploy 
+assim quando detectado alteração numa branch master. 
 
+O Heroku disponibiliza configuração de núvem tanto pela plataforma web ou baixando o [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli) para configurar o ambiente via linha de comando.
+
+
+1. PELO TERMINAL
+Dentro do projeto intelipost-api digite:
+
+a. Faça o login na sua conta Heroku e siga as instruções para criar uma nova chave pública SSH.
+$heroku login
+
+b. Faça algumas alterações no código dentro do projeto e implemente-as no Heroku usando o Git.
+$ git add .
+$ git commit -am "primeiro commit"
+$ git push heroku master
+
+Pronto, já está deployado no Heroku.
+Porém, o heroku possui um recurso que será utilizado integrando o github sem precisar fazer esses passos acima apenas dando push no para o github brach master.
+
+
+2. CRIANDO POSTGREE
+Para criar banco de dados na núvem foi necessiario digitar as seguintes instruções dentro do projeto intelipost-api
+
+a. Criando o banco postgre free:
+heroku addons:create heroku-postgresql:hobby-dev
+
+b. Buscando variavel de ambiente do banco criado:
+heroku config:get 
+DATABASE_URL: postgres://eshaufvsjtavac:f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef@ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
+
+c. Criando variaveis de ambiente pela decomposição da variável DATABASE_URL:
+heroku config:set JDBC_DATABASE_URL=jdbc:postgresql://ec2-54-225-76-243.compute-1.amazonaws.com:5432/datb3qhjdqo9qa
+heroku config:set JDBC_DATABASE_USERNAME=eshaufvsjtavac
+heroku config:set JDBC_DATABASE_PASSWORD=f09a866e7d36dd2b8cc4329299bb927c72341eb066eb6e79bef9c16b5016bdef
+
+Pronto, já está criado as variaveis de ambiente para a api na núvem
+
+3. Criando arquivo application-prod.properties
+ Esse arquivo deve ser criado dentro da pasta src/main/resource. Ele é necessário quando o projeto for dado push para produção onde as variáveis de ambiente acima irão conectar o projeto ao banco postgres em produção na núvem.
+
+Exemplo:
+spring.datasource.url={JDBC_DATABASE_URL}
+spring.datasource.username={JDBC_DATABASE_USERNAME}
+spring.datasource.password={JDBC_DATABASE_PASSWORD}
+
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+
+4. Criando o arquivo Procfile
+Esse arquivo é exigida pelo Heroku para configurar a api para funcionar em seu ambiente interno, configurando assim porta do servidor, arquivos de produção e local do jar compilado para ser rodado. Ele deve ser criado dentro do projeto intelipost-api
+
+Exemplo
+web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/intelipost*.jar
+
+
+Após essas configurações rode:
+$ git add .
+$ git commit -am "configuracao de ambiente"
+$ git push heroku master
+
+5. LINKS
 LINK DO ENDEREÇO DA API INTELIPOST-API 
 heroku create intelipost-api:
 https://intelipost-api.herokuapp.com/
 
 CRIANDO POSTGREE
 heroku-postgresql:hobby-dev:
-banco de dados limitado para teste com 8 
+banco de dados limitado para teste 
 configuração de arquivo application-prod.properties no projeto para linkar ao banco de produção;
 
 
@@ -63,8 +125,12 @@ GitHub: https://github.com/WilliamRegesDeveloper/job-backend-developer.git
 GitHeroku: https://git.heroku.com/intelipost-api.git
 
 
-
-
+## Como foi resolver seu teste
+ Esse teste foi bom para aumento de conhecimento sobre o que a empresa exige de nós desenvolvedores. Para mim é um desafio poder trabalhar com apis em núvem e poder amadurecer mais nesse profissão. Não trabalhei ainda totalmente em nuvem como google cloud ou AWS. Sempre trabalhei de maneira hibrida tanto com sistemas erp em infra- estrutura onprimece e apis rest em núvem para integrar erp a alguma plataforma web. 
+ Sobre trabalhar com aplicação em loadbalance é um assunto novo que estou me aprofundando em conhecer e melhorar meu conhecimento. 
+ Sobre criar layous no spring-boot, apenas trabalhei comm integração de apis rest. Layouts já criei em outros sistemas porém em JSF. 
+ Sobre trabalhar em banco de dados, já trabalhei com outros bancos com sqlserver, mysql e firebird com queries e store procedure. Postgres é novo para mim. Mas não percebi muita diferença já que consegui crialo na núvem e também dockeriza-lo em ambiente de desenvolvimento local. 
+ Gosto do que faço e aprendo a cada dia mais algo novo. Assim melhoro meu conteúdo e conhecimento sobre o que o mercado pode utilizar como tecnologia e inovação.
 
 
 
