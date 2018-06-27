@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +19,8 @@ import javax.validation.constraints.Size;
 public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sq_pk_usuario")
+	@SequenceGenerator(name="sq_pk_usuario", sequenceName="sq_pk_usuario", allocationSize=1)
 	private Long id;
 	
 	@Size(min=1, max=50)
