@@ -105,7 +105,7 @@ A variável DATABASE_URL é dividido em tres partes. Essas tres partes devem der c
 Pronto, já está criado as variaveis de ambiente para a api na núvem
 
 ## Criando arquivo application-prod.properties
- Esse arquivo deve ser criado dentro da pasta src/main/resource. Ele é necessário quando o projeto for dado push para produção onde as variáveis de ambiente acima irão conectar o projeto ao banco postgres em produção na núvem.
+ Esse arquivo deve ser criado dentro da pasta src/main/resource. Ele é necessário para configurar os parametros de entrada para acessar endereço do banco em produção. Conforme exemplo abaixo as variáveis de ambiente criado anteriormente devem ser atribuidos nas propriedades de conexão ao banco postgree. Essas configurações subustitui os pamametros do arquivo application.properties.
 
 1. Exemplo:
 
@@ -116,7 +116,9 @@ Pronto, já está criado as variaveis de ambiente para a api na núvem
 
 
 ## Criando o arquivo Procfile
-Esse arquivo é exigida pelo Heroku para configurar a api para funcionar em seu ambiente interno, configurando assim porta do servidor, arquivos de produção e local do jar compilado para ser rodado. Ele deve ser criado dentro do projeto intelipost-api
+Esse arquivo é exigida pelo Heroku para configurar o start da API dentro de seu ambiente de produção, configurando assim porta do servidor, arquivos de produção e local do jar compilado para ser rodado. Ele deve ser criado dentro do projeto intelipost-api
+
+Um dos exemplos seria a propriedade -Dspring.profiles.active=prod, que configura o arquivo application-prod.properties sendo o arquivo de produção.
 
 1. Exemplo
 * web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/intelipost*.jar
