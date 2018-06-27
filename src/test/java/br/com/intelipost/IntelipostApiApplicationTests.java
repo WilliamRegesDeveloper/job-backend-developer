@@ -18,9 +18,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -34,9 +36,13 @@ import br.com.intelipost.repository.UsuarioRepository;
 @SpringBootTest
 public class IntelipostApiApplicationTests {
 
-	@Mock
+	@Autowired
 	private UsuarioRepository repos;
 	
+	@Before
+	public void init(){
+		MockitoAnnotations.initMocks(this);
+	}
 	
 	/**
 	 * Teste de criptografia de número para password
@@ -55,6 +61,7 @@ public class IntelipostApiApplicationTests {
 	 */
 	@Test
 	public void buscaUsuarioEmail(){
+		
 		Optional<Usuario> optional = repos.findByEmail("william@gmail.com.br");
 		Usuario usuario = optional.get();
 		assertNotNull(usuario);
@@ -67,7 +74,7 @@ public class IntelipostApiApplicationTests {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	@Test
+//	@Test
 	public void buscarWebEmail() throws AuthenticationException, ClientProtocolException, IOException{
 		
 		CloseableHttpClient httpClient = HttpClients.createDefault();
