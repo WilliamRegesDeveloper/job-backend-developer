@@ -67,7 +67,7 @@ assim quando detectado alteração numa branch master.
 O Heroku disponibiliza configuração de núvem tanto pela plataforma web ou baixando o [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli) para configurar o ambiente via linha de comando.
 
 
-### Pelo Terminal
+### Configurando API no terminal
 Dentro do projeto intelipost-api digite:
 
 1) Faça o login na sua conta Heroku e siga as instruções para criar uma nova chave pública SSH.
@@ -84,7 +84,7 @@ Pronto, já está deployado no Heroku.
 Porém, o heroku possui um recurso que será utilizado integrando o github sem precisar fazer esses passos acima apenas dando push no para o github brach master.
 
 
-### Configurando banco Postgre
+### Configurando banco Postgre no terminal
 Para criar banco de dados na núvem foi necessiario digitar as seguintes instruções dentro do projeto intelipost-api
 
 1. Criando o banco postgre free:
@@ -134,27 +134,24 @@ O procedimento de builder está por conta do serviço Heroku que ao ser notificado
 
 
 ## LINKS
-1. Endereço da API INTELIPOST-API 
-* https://intelipost-api.herokuapp.com/
+* Endereço da API INTELIPOST-API: https://intelipost-api.herokuapp.com/
 
-2. Repositorio GitHub e Heroku
 * GitHub em repositorio: https://github.com/WilliamRegesDeveloper/job-backend-developer.git
 * GitHeroku em produção: https://git.heroku.com/intelipost-api.git
 
-3. Manual de Integração
-* Manual de integração front-end a api [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV);
+* Manual de integração para o Front-end [Postman](https://documenter.getpostman.com/view/2826688/intelipost-api/RWEjowsV);
 
 
 ## Como foi resolver seu teste
  Esse teste foi bom para aumento de conhecimento sobre o que a empresa exige de nós desenvolvedores. Para mim é um desafio poder trabalhar com apis em núvem e poder amadurecer mais meus conhecimentos. Não trabalhei ainda totalmente em nuvem como google cloud ou AWS. Os clientes em que trabalhei sempre trabalham de maneira hibrida tanto com sistemas erp em infra-estrutura onprimeces com algumas coisas em núvem. Tenho convivencia com servidores de aplicação Tomcat, Widfly, Glassfish e apis rest tanto em Apache Tomcat quanto rodando no próprio heroku. 
 
- Sobre CI/CD já implantei Jenkins integrado com GitLab para entrega contínua em servidor onpremice onde a ferramenta faz builder e deploy no Apache Tomcat. Porém, para esse teste deixei por conta do próprio heroku essa função de entrega contínua.
+ Sobre CI/CD já implantei Jenkins integrado com GitLab para entrega contínua em servidor onpremice onde a ferramenta faz builder e deploy no Apache Tomcat. Porém, para esse teste deixei por conta do próprio heroku que já possui job integrado com builder e deploy continuo das branch master no github do projeto.
 
  Sobre trabalhar com aplicação em loadbalance é um assunto novo que estou me aprofundando em conhecer e melhorar meu conhecimento.
 
- Sobre criar layous no spring-boot, apenas trabalhei comm integração de apis rest. Layouts já criei em outros sistemas porém em JSF.
+ Já trabalhei com fron-end em sistemas jsf com biblioteca primefaces, porém utilizo spring-boot para desenvolver microserviços que fazer integração entre bancos, integração entre site e ERP, integração entre arquivos de email e ERP, dentre outros.
 
- Sobre trabalhar em banco de dados, já trabalhei com outros bancos com sqlserver, mysql e firebird criando tabelas relacionais, desenvolvendo queries, store procedure e view. Postgres é novo para mim. Mas não percebi muita diferença já que consegui crialo na núvem e também dockeriza-lo em ambiente de desenvolvimento local. 
+ Sobre trabalhar em banco de dados, já trabalhei com outros bancos com sqlserver, mysql e firebird criando tabelas relacionais, desenvolvendo queries, store procedure e view. Postgres é novo para mim. Mas não percebi muita diferença já que consegui cria-lo na núvem e também dockeriza-lo em ambiente de desenvolvimento local. 
 
  Gosto do que faço e aprendo a cada dia mais algo novo. Assim melhoro meu conteúdo e conhecimento sobre o que o mercado pode utilizar como tecnologia e inovação.
 
